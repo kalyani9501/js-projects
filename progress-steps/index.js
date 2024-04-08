@@ -4,7 +4,6 @@ const next = document.getElementById('next');
 let allCircle = document.querySelectorAll('.circle');
 
 let currentActiveCircle = 0;
-let progressValue = 0;
 
 prev.addEventListener('click', () => {
   const item = allCircle[currentActiveCircle];
@@ -16,8 +15,9 @@ prev.addEventListener('click', () => {
     prev.disabled = true;
   }
   next.disabled = false;
-  progressValue -= 30;
-  progress.style.width = `${progressValue}%`;
+  progress.style.width = `${
+      (currentActiveCircle / (allCircle.length - 1)) * 100
+  }%`;
 });
 
 next.addEventListener('click', () => {
@@ -32,6 +32,8 @@ next.addEventListener('click', () => {
   if (currentActiveCircle === allCircle.length - 1) {
     next.disabled = true;
   }
-  progressValue += 30;
-  progress.style.width = `${progressValue}%`;
+
+  progress.style.width = `${
+      (currentActiveCircle / (allCircle.length - 1)) * 100
+  }%`;
 });
